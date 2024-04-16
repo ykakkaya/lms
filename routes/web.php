@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminSettingsController;
+use App\Http\Controllers\Instructor\InstructorSettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +28,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+
+//admin routes
+Route::prefix('/admin')->middleware(['auth','role:admin'])->group(function(){
+    Route::get('/dashboard',[AdminSettingsController::class,'index'])->name('admin.index');
+});
+
+//instructor routes
+Route::prefix('/instructor')->middleware(['auth','role:instructor'])->group(function(){
+    Route::get('/dashboard',[InstructorSettingsController::class,'index'])->name('instructor.index');
 });
 
 require __DIR__.'/auth.php';
