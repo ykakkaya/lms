@@ -34,6 +34,9 @@ Route::middleware('auth')->group(function () {
 //admin routes
 Route::prefix('/admin')->middleware(['auth','role:admin'])->group(function(){
     Route::get('/dashboard',[AdminSettingsController::class,'index'])->name('admin.index');
+    Route::get('/admin/logout',[AdminSettingsController::class,'adminLogout'])->name('admin.logout');
+    Route::get('/user_profile',[AdminSettingsController::class,'profileShow'])->name('admin.profile.show');
+    
 });
 
 //instructor routes
