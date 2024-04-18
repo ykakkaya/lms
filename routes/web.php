@@ -44,6 +44,11 @@ Route::prefix('/admin')->middleware(['auth','role:admin'])->group(function(){
 //instructor routes
 Route::prefix('/instructor')->middleware(['auth','role:instructor'])->group(function(){
     Route::get('/dashboard',[InstructorSettingsController::class,'index'])->name('instructor.index');
+    Route::get('/admin/logout',[InstructorSettingsController::class,'instructorLogout'])->name('instructor.logout');
+    Route::get('/user_profile',[InstructorSettingsController::class,'profileShow'])->name('instructor.profile.show');
+    Route::post('/profile_update',[InstructorSettingsController::class,'profileUpdate'])->name('instructor.profile.update');
+    Route::get('/profile/change/password',[InstructorSettingsController::class,'changePassword'])->name('instructor.profile.changePassword');
+    Route::post('/profile/update/password',[InstructorSettingsController::class,'updatePassword'])->name('instructor.profile.updatePassword');
 });
 
 require __DIR__.'/auth.php';
