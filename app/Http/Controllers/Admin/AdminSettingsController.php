@@ -22,7 +22,7 @@ class AdminSettingsController extends Controller
 
         return redirect('/login');
     }
-    
+
     public function profileShow(){
         $profile=Auth::user();
         return view('admin.profile.profile_edit',compact('profile'));
@@ -33,11 +33,9 @@ class AdminSettingsController extends Controller
         $image_path = $profile->image;
 
         if($request->hasFile('image')){
-            $oldImagePath = public_path('admin/images/profile/' . $image_path);
-            if(file_exists($oldImagePath)) {
-                unlink($oldImagePath);
+            if($image_path!=NULL){
+                unlink($image_path);
             }
-
             $image = $request->file('image');
             $imageName = time().'.'.$image->getClientOriginalExtension();
             $image->move(public_path('admin/images/profile'), $imageName);

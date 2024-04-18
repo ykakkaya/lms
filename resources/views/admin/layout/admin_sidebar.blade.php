@@ -30,23 +30,14 @@
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bx bx-category"></i>
                 </div>
-                <div class="menu-title">Application</div>
+                <div class="menu-title">Kategoriler</div>
             </a>
             <ul>
-                <li> <a href="app-emailbox.html"><i class='bx bx-radio-circle'></i>Email</a>
+                <li> <a href="app-emailbox.html"><i class='bx bx-radio-circle'></i>Kategori Listesi</a>
                 </li>
-                <li> <a href="app-chat-box.html"><i class='bx bx-radio-circle'></i>Chat Box</a>
+                <li> <a href="app-chat-box.html"><i class='bx bx-radio-circle'></i>Kategori Ekle</a>
                 </li>
-                <li> <a href="app-file-manager.html"><i class='bx bx-radio-circle'></i>File Manager</a>
-                </li>
-                <li> <a href="app-contact-list.html"><i class='bx bx-radio-circle'></i>Contatcs</a>
-                </li>
-                <li> <a href="app-to-do.html"><i class='bx bx-radio-circle'></i>Todo List</a>
-                </li>
-                <li> <a href="app-invoice.html"><i class='bx bx-radio-circle'></i>Invoice</a>
-                </li>
-                <li> <a href="app-fullcalender.html"><i class='bx bx-radio-circle'></i>Calendar</a>
-                </li>
+
             </ul>
         </li>
         <li class="menu-label">UI Elements</li>
@@ -307,40 +298,7 @@
                 </li>
             </ul>
         </li>
-        <li class="menu-label">Others</li>
-        <li>
-            <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"><i class="bx bx-menu"></i>
-                </div>
-                <div class="menu-title">Menu Levels</div>
-            </a>
-            <ul>
-                <li> <a class="has-arrow" href="javascript:;"><i class='bx bx-radio-circle'></i>Level One</a>
-                    <ul>
-                        <li> <a class="has-arrow" href="javascript:;"><i class='bx bx-radio-circle'></i>Level Two</a>
-                            <ul>
-                                <li> <a href="javascript:;"><i class='bx bx-radio-circle'></i>Level Three</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a href="https://codervent.com/rocker/documentation/index.html" target="_blank">
-                <div class="parent-icon"><i class="bx bx-folder"></i>
-                </div>
-                <div class="menu-title">Documentation</div>
-            </a>
-        </li>
-        <li>
-            <a href="https://themeforest.net/user/codervent" target="_blank">
-                <div class="parent-icon"><i class="bx bx-support"></i>
-                </div>
-                <div class="menu-title">Support</div>
-            </a>
-        </li>
+        
     </ul>
     <!--end navigation-->
 </div>

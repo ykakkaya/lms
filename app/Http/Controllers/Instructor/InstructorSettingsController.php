@@ -34,10 +34,7 @@ class InstructorSettingsController extends Controller
 
         if($request->hasFile('image')){
             if($image_path!=NULL){
-                    $oldImagePath = public_path('instructor/images/profile/' . $image_path);
-                    if(file_exists($oldImagePath)) {
-                        unlink($oldImagePath);
-                    }
+                unlink($image_path);
             }
 
 
