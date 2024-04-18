@@ -36,7 +36,9 @@ Route::prefix('/admin')->middleware(['auth','role:admin'])->group(function(){
     Route::get('/dashboard',[AdminSettingsController::class,'index'])->name('admin.index');
     Route::get('/admin/logout',[AdminSettingsController::class,'adminLogout'])->name('admin.logout');
     Route::get('/user_profile',[AdminSettingsController::class,'profileShow'])->name('admin.profile.show');
-    
+    Route::post('/profile_update',[AdminSettingsController::class,'profileUpdate'])->name('admin.profile.update');
+    Route::get('/profile/change/password',[AdminSettingsController::class,'changePassword'])->name('admin.profile.changePassword');
+    Route::post('/profile/update/password',[AdminSettingsController::class,'updatePassword'])->name('admin.profile.updatePassword');
 });
 
 //instructor routes
