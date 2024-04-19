@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminSettingsController;
 use App\Http\Controllers\Instructor\InstructorSettingsController;
+use App\Http\Controllers\Frontend\IndexPageController;
+use App\Http\Controllers\Frontend\LoginPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +18,9 @@ use App\Http\Controllers\Instructor\InstructorSettingsController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('frontend.index');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -39,16 +41,23 @@ Route::prefix('/admin')->middleware(['auth','role:admin'])->group(function(){
     Route::post('/profile_update',[AdminSettingsController::class,'profileUpdate'])->name('admin.profile.update');
     Route::get('/profile/change/password',[AdminSettingsController::class,'changePassword'])->name('admin.profile.changePassword');
     Route::post('/profile/update/password',[AdminSettingsController::class,'updatePassword'])->name('admin.profile.updatePassword');
+
 });
 
 //instructor routes
 Route::prefix('/instructor')->middleware(['auth','role:instructor'])->group(function(){
     Route::get('/dashboard',[InstructorSettingsController::class,'index'])->name('instructor.index');
-    Route::get('/admin/logout',[InstructorSettingsController::class,'instructorLogout'])->name('instructor.logout');
+    Route::get('/instructor/logout',[InstructorSettingsController::class,'instructorLogout'])->name('instructor.logout');
     Route::get('/user_profile',[InstructorSettingsController::class,'profileShow'])->name('instructor.profile.show');
     Route::post('/profile_update',[InstructorSettingsController::class,'profileUpdate'])->name('instructor.profile.update');
     Route::get('/profile/change/password',[InstructorSettingsController::class,'changePassword'])->name('instructor.profile.changePassword');
     Route::post('/profile/update/password',[InstructorSettingsController::class,'updatePassword'])->name('instructor.profile.updatePassword');
 });
+
+
+//frontend
+Route::get('/',[IndexPageController::class,'index'])->name('frontend.index');
+Route::get('/login',[LoginPageController::class,'index'])->name('frontend.login');
+
 
 require __DIR__.'/auth.php';
