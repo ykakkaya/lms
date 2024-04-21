@@ -1,5 +1,8 @@
 @extends('admin.layout.admin_dashboard')
 @section('admin_content')
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -34,8 +37,13 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex flex-column align-items-center text-center">
-                                    <img src="{{ asset($profile->image) }}" alt="Admin"
+                                    @empty($profile->image)
+                                           <img src="{{ asset('admin/no_image.jpg') }}" class="rounded-circle p-1 bg-primary" width="110" alt="user avatar" >
+                                            @else
+                                            <img src="{{ asset($profile->image) }}" alt="Admin"
                                         class="rounded-circle p-1 bg-primary" width="110">
+                                           @endempty
+
                                     <div class="mt-3">
                                         <h4>{{ $profile->name }}</h4>
                                         <p class="text-secondary mb-1">{{ $profile->phone }}</p>
@@ -126,7 +134,7 @@
                                             <h6 class="mb-0">Profil Resmi Düzenle</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="file" class="form-control" name="image"/>
+                                            <input type="file" class="form-control" name="image" id="image"/>
                                         </div>
 
                                     </div>
@@ -137,8 +145,11 @@
 
                                         <div class="col-sm-9 text-secondary">
 
-                                            <img src="{{ asset($profile->image) }}"
-                                                class="user-img" alt="user avatar">
+                                           @empty($profile->image)
+                                           <img src="{{ asset('admin/no_image.jpg') }}" class="user-img" alt="user avatar" id="showImage">
+                                            @else
+                                            <img src="{{ asset($profile->image) }}" class="user-img" alt="user avatar" id="showImage">
+                                           @endempty
                                         </div>
                                     </div>
                                     <div class="row">
@@ -157,4 +168,18 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            $('#image').change(function(e){
+                var reader = new FileReader();
+                reader.onload = function(e){
+                    $('#showImage').attr('src',e.target.result);
+                }
+                reader.readAsDataURL(e.target.files['0']);
+            });
+        });
+
+    </script>
 @endsection

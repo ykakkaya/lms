@@ -3,9 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminSettingsController;
+use App\Http\Controllers\Admin\CategoryAdminController;
 use App\Http\Controllers\Instructor\InstructorSettingsController;
 use App\Http\Controllers\Frontend\IndexPageController;
 use App\Http\Controllers\Frontend\LoginPageController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +43,13 @@ Route::prefix('/admin')->middleware(['auth','role:admin'])->group(function(){
     Route::post('/profile_update',[AdminSettingsController::class,'profileUpdate'])->name('admin.profile.update');
     Route::get('/profile/change/password',[AdminSettingsController::class,'changePassword'])->name('admin.profile.changePassword');
     Route::post('/profile/update/password',[AdminSettingsController::class,'updatePassword'])->name('admin.profile.updatePassword');
+    //Category Routes
+    Route::get('/category/index',[CategoryAdminController::class,'index'])->name('admin.category.index');
+    Route::get('/category/create',[CategoryAdminController::class,'create'])->name('admin.category.create');
+    Route::post('/category/store',[CategoryAdminController::class,'store'])->name('admin.category.store');
+    Route::get('/category/edit/{id}',[CategoryAdminController::class,'edit'])->name('admin.category.edit');
+    Route::post('/category/update/{id}',[CategoryAdminController::class,'update'])->name('admin.category.update');
+    Route::get('/category/delete/{id}',[CategoryAdminController::class,'delete'])->name('admin.category.delete');
 
 });
 
@@ -58,6 +67,7 @@ Route::prefix('/instructor')->middleware(['auth','role:instructor'])->group(func
 //frontend
 Route::get('/',[IndexPageController::class,'index'])->name('frontend.index');
 Route::get('/login',[LoginPageController::class,'index'])->name('frontend.login');
+Route::get('/frontend/logout',[IndexPageController::class,'logout'])->name('frontend.logout');
 
 
 require __DIR__.'/auth.php';

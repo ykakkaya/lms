@@ -1,5 +1,7 @@
 @extends('instructor.layout.instructor_dashboard')
 @section('instructor_content')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -23,8 +25,13 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex flex-column align-items-center text-center">
-                                    <img src="{{ asset($profile->image) }}" alt="Admin"
-                                        class="rounded-circle p-1 bg-primary" width="110">
+                                    @empty($profile->image)
+                                        <img src="{{ asset('admin/no_image.jpg') }}" class="rounded-circle p-1 bg-primary"
+                                            width="110" alt="user avatar">
+                                    @else
+                                        <img src="{{ asset($profile->image) }}" alt="Admin"
+                                            class="rounded-circle p-1 bg-primary" width="110">
+                                    @endempty
                                     <div class="mt-3">
                                         <h4>{{ $profile->name }}</h4>
                                         <p class="text-secondary mb-1">{{ $profile->phone }}</p>
@@ -66,7 +73,8 @@
                     </div>
                     <div class="col-lg-8">
                         <div class="card">
-                            <form action="{{ route('instructor.profile.update') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('instructor.profile.update') }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="row mb-3">
@@ -74,7 +82,8 @@
                                             <h6 class="mb-0">Adınız</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" class="form-control" name="name" value="{{ $profile->name }}" />
+                                            <input type="text" class="form-control" name="name"
+                                                value="{{ $profile->name }}" />
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -82,7 +91,8 @@
                                             <h6 class="mb-0">Kullanıcı Adı</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" class="form-control" name="username" value="{{ $profile->username }}" />
+                                            <input type="text" class="form-control" name="username"
+                                                value="{{ $profile->username }}" />
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -90,7 +100,8 @@
                                             <h6 class="mb-0">Email</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" class="form-control" name="email" value="{{ $profile->email }}" />
+                                            <input type="text" class="form-control" name="email"
+                                                value="{{ $profile->email }}" />
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -98,7 +109,8 @@
                                             <h6 class="mb-0">Telefon</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" class="form-control" name="phone" value="{{ $profile->phone }}" />
+                                            <input type="text" class="form-control" name="phone"
+                                                value="{{ $profile->phone }}" />
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -106,7 +118,8 @@
                                             <h6 class="mb-0">Adres</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" class="form-control" name="address" value="{{ $profile->address }}" />
+                                            <input type="text" class="form-control" name="address"
+                                                value="{{ $profile->address }}" />
                                         </div>
                                     </div>
 
@@ -115,7 +128,7 @@
                                             <h6 class="mb-0">Profil Resmi Düzenle</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="file" class="form-control" name="image"/>
+                                            <input type="file" class="form-control" id="image" name="image" />
                                         </div>
 
                                     </div>
@@ -126,8 +139,13 @@
 
                                         <div class="col-sm-9 text-secondary">
 
-                                            <img src="{{ asset($profile->image) }}"
-                                                class="user-img" alt="user avatar">
+                                            @empty($profile->image)
+                                                <img src="{{ asset('admin/no_image.jpg') }}" class="user-img"
+                                                    alt="user avatar" id="showImage">
+                                            @else
+                                                <img src="{{ asset($profile->image) }}" class="user-img" alt="user avatar"
+                                                    id="showImage">
+                                            @endempty
                                         </div>
                                     </div>
                                     <div class="row">
@@ -146,4 +164,16 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#image').change(function(e) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#showImage').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(e.target.files['0']);
+            });
+        });
+    </script>
 @endsection

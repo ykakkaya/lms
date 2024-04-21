@@ -27,6 +27,9 @@
 	<link rel="stylesheet" href="{{asset('backend/assets/css/header-colors.css')}}"/>
     <!--Toast Message -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+    <!--datatable-->
+    <link href="{{asset('backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
+
 
 	<title>Online Kurs Sistemi Admin Panel</title>
 </head>
@@ -221,6 +224,17 @@
 	</script>
     <!--toast message-->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <!--datatable-->
+  <script src="{{asset('backend/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+  <script src="{{asset('backend/assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
+
+  <script>
+      $(document).ready(function() {
+  $('#example').DataTable();
+});
+
+  </script>
 
 <script>
  @if(Session::has('message'))

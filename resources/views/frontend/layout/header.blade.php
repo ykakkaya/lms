@@ -32,10 +32,18 @@
                                 </svg>
                             </button>
                         </div>
+                        @auth
+                        <ul class="generic-list-item d-flex flex-wrap align-items-center fs-14 border-left border-left-gray pl-3 ml-3">
+                            <li class="d-flex align-items-center pr-3 mr-3 border-right border-right-gray"><i class="la la-sign-in mr-1"></i><a href="#">Hoşgeldin  {{Auth::user()->name}}</a></li>
+                            <li class="d-flex align-items-center"><i class="la la-user mr-1"></i><a href="{{route('frontend.logout')}}"> Çıkış Yap</a></li>
+                        </ul>
+                        @else
                         <ul class="generic-list-item d-flex flex-wrap align-items-center fs-14 border-left border-left-gray pl-3 ml-3">
                             <li class="d-flex align-items-center pr-3 mr-3 border-right border-right-gray"><i class="la la-sign-in mr-1"></i><a href="{{route('frontend.login')}}"> Giriş Yap</a></li>
                             <li class="d-flex align-items-center"><i class="la la-user mr-1"></i><a href="sign-up.html"> Register</a></li>
                         </ul>
+                        @endauth
+
                     </div><!-- end header-widget -->
                 </div><!-- end col-lg-6 -->
             </div><!-- end row -->
