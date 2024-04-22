@@ -1,6 +1,5 @@
 @extends('admin.layout.admin_dashboard')
 @section('admin_content')
-
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -16,7 +15,7 @@
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <a href="{{route('admin.category.create')}}" type="button" class="btn btn-primary">Kategori Ekle</a>
+                    <a href="{{ route('admin.category.create') }}" type="button" class="btn btn-primary">Kategori Ekle</a>
 
                 </div>
             </div>
@@ -37,17 +36,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($categories as $key=> $item )
-                            <tr>
-                                <td>{{$key+1}}</td>
-                                <td><img src="{{asset($item->image)}}" width="80px"></td>
-                                <td>{{$item->name}}</td>
-                                <td><a href="{{route('admin.category.edit',$item->id)}}" type="button" class="btn btn-warning">Düzenle</a>
-                                    <a href="{{route('admin.category.delete',$item->id)}}" id="delete" type="button" class="btn btn-danger">Sil</a>
-                                </td>
+                            @foreach ($categories as $key => $item)
+                                <tr>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td><img src="{{ asset($item->image) }}" width="80px"></td>
+                                    <td>{{ $item->name }}</td>
+                                    <td><a href="{{ route('admin.category.edit', $item->id) }}" type="button"
+                                            class="btn btn-warning">Düzenle</a>
+                                        <a href="{{ route('admin.category.delete', $item->id) }}" id="delete"
+                                            type="button" class="btn btn-danger">Sil</a>
+                                    </td>
 
-                            </tr>
-
+                                </tr>
                             @endforeach
 
 
@@ -59,7 +59,4 @@
             </div>
         </div>
     </div>
-
-
-
 @endsection
