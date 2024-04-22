@@ -16,7 +16,7 @@
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <a href="#" type="button" class="btn btn-primary">Kategori Ekle</a>
+                    <a href="{{route('admin.category.create')}}" type="button" class="btn btn-primary">Kategori Ekle</a>
 
                 </div>
             </div>
@@ -40,10 +40,10 @@
                             @foreach ($categories as $key=> $item )
                             <tr>
                                 <td>{{$key+1}}</td>
-                                <td><img src="{{$item->image}}"></td>
+                                <td><img src="{{asset($item->image)}}" width="80px"></td>
                                 <td>{{$item->name}}</td>
-                                <td><a href="#" type="button" class="btn btn-warning">Düzenle</a>
-                                    <a href="#" type="button" class="btn btn-danger">Sil</a>
+                                <td><a href="{{route('admin.category.edit',$item->id)}}" type="button" class="btn btn-warning">Düzenle</a>
+                                    <a href="{{route('admin.category.delete',$item->id)}}" id="delete" type="button" class="btn btn-danger">Sil</a>
                                 </td>
 
                             </tr>

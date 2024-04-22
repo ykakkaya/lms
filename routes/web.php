@@ -49,7 +49,7 @@ Route::prefix('/admin')->middleware(['auth','role:admin'])->group(function(){
     Route::post('/category/store',[CategoryAdminController::class,'store'])->name('admin.category.store');
     Route::get('/category/edit/{id}',[CategoryAdminController::class,'edit'])->name('admin.category.edit');
     Route::post('/category/update/{id}',[CategoryAdminController::class,'update'])->name('admin.category.update');
-    Route::get('/category/delete/{id}',[CategoryAdminController::class,'delete'])->name('admin.category.delete');
+    Route::get('/category/delete/{id}',[CategoryAdminController::class,'destroy'])->name('admin.category.delete');
 
 });
 

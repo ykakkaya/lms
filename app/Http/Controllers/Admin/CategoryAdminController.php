@@ -30,6 +30,8 @@ class CategoryAdminController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $request->validate([
             'name' =>'required|string|max:255',
             'image' =>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -45,7 +47,7 @@ class CategoryAdminController extends Controller
             $image_path = 'admin/images/category/'. $imageName;
         }
 
-        $category->create([
+        Category::create([
             'name' => $request->name,
             'slug' => strtolower(str_replace(' ','-',$request->name)),
             'image' => $image_path,
@@ -112,18 +114,26 @@ class CategoryAdminController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        $category=Category::findorfail($id);
-        $image_path = $category->image;
-        if($image_path!=NULL){
-            unlink($image_path);
-        }
-        $category->delete();
-        $notification = array(
-           'message' => 'Kategori Başarıyla Silindi',
-            'alert-type' => 'error'
-        );
-        return redirect()->route('admin.category.index')->with($notification);
+    public function destroy( $id)
+{
+
+    $category = Category::findorfail($id);
+
+    if (!$category) {
+        return redirect()->back();
     }
+
+    // Kategorinin bir resmi varsa, dosyayı sil
+    if ($category->image != NULL) {
+        unlink(public_path($category->image));
+    }
+
+    // Kategoriyi sil
+    if ($category->delete()) {
+        return redirect()->back();
+    } else {
+        return redirect()->back();
+    }
+}
+
 }
