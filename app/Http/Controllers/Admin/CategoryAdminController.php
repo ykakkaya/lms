@@ -49,7 +49,8 @@ class CategoryAdminController extends Controller
 
         Category::create([
             'name' => $request->name,
-            'slug' => strtolower(str_replace(' ','-',$request->name)),
+            //'slug' => strtolower(str_replace(' ','-',$request->name)),
+            'slug' => strtolower(str_replace(' ', '-', strtr($request->name, 'çğıöşü', 'cgiosu'))),
             'image' => $image_path,
         ]);
         $notification = array(
