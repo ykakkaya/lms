@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminSettingsController;
 use App\Http\Controllers\Admin\CategoryAdminController;
+use App\Http\Controllers\Admin\SubCategoryAdminController;
+use App\Http\Controllers\Admin\InstructorAdminController;
 use App\Http\Controllers\Instructor\InstructorSettingsController;
 use App\Http\Controllers\Frontend\IndexPageController;
 use App\Http\Controllers\Frontend\LoginPageController;
@@ -50,7 +52,16 @@ Route::prefix('/admin')->middleware(['auth','role:admin'])->group(function(){
     Route::get('/category/edit/{id}',[CategoryAdminController::class,'edit'])->name('admin.category.edit');
     Route::post('/category/update/{id}',[CategoryAdminController::class,'update'])->name('admin.category.update');
     Route::get('/category/delete/{id}',[CategoryAdminController::class,'destroy'])->name('admin.category.delete');
-
+    //subcategory Routes
+    Route::get('/subcategory/index',[SubCategoryAdminController::class,'index'])->name('admin.subcategory.index');
+    Route::get('/subcategory/create',[SubCategoryAdminController::class,'create'])->name('admin.subcategory.create');
+    Route::post('/subcategory/store',[SubCategoryAdminController::class,'store'])->name('admin.subcategory.store');
+    Route::get('/subcategory/edit/{id}',[SubCategoryAdminController::class,'edit'])->name('admin.subcategory.edit');
+    Route::post('/subcategory/update/{id}',[SubCategoryAdminController::class,'update'])->name('admin.subcategory.update');
+    Route::get('/subcategory/delete/{id}',[SubCategoryAdminController::class,'destroy'])->name('admin.subcategory.delete');
+    //admin instructors Routes
+    Route::get('/instructor/index',[InstructorAdminController::class,'index'])->name('admin.instructor.index');
+    Route::post('/instructor/update/{id}',[InstructorAdminController::class,'update'])->name('admin.instructor.update');
 });
 
 //instructor routes

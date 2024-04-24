@@ -17,14 +17,14 @@
                 </div>
                 <div class="menu-title">Dashboard</div>
             </a>
-            <ul>
+            {{-- <ul>
                 <li> <a href="index.html"><i class='bx bx-radio-circle'></i>Default</a>
                 </li>
                 <li> <a href="index2.html"><i class='bx bx-radio-circle'></i>Alternate</a>
                 </li>
                 <li> <a href="index3.html"><i class='bx bx-radio-circle'></i>Graphical</a>
                 </li>
-            </ul>
+            </ul> --}}
         </li>
         <li>
             <a href="javascript:;" class="has-arrow">
@@ -38,6 +38,31 @@
                 <li> <a href="{{route('admin.category.create')}}"><i class='bx bx-radio-circle'></i>Kategori Ekle</a>
                 </li>
 
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-cookie"></i>
+                </div>
+                <div class="menu-title">Alt Kategoriler</div>
+            </a>
+            <ul>
+                <li> <a href="{{route('admin.subcategory.index')}}"><i class='bx bx-radio-circle'></i>Alt Kategori Listesi</a>
+                </li>
+                <li> <a href="{{route('admin.subcategory.create')}}"><i class='bx bx-radio-circle'></i>Alt Kategori Ekle</a>
+                </li>
+
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-bookmark-heart"></i>
+                </div>
+                <div class="menu-title">Eğitmenler</div>
+            </a>
+            <ul>
+                <li> <a href="{{route('admin.instructor.index')}}"><i class='bx bx-radio-circle'></i>Eğitmen Listesi</a>
+                </li>
             </ul>
         </li>
         <li class="menu-label">UI Elements</li>
