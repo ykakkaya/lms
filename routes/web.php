@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\SubCategoryAdminController;
 use App\Http\Controllers\Admin\InstructorAdminController;
 use App\Http\Controllers\Instructor\InstructorSettingsController;
 use App\Http\Controllers\Frontend\IndexPageController;
+use App\Http\Controllers\Frontend\RegisterPageController;
 use App\Http\Controllers\Frontend\LoginPageController;
 
 
@@ -79,6 +80,7 @@ Route::prefix('/instructor')->middleware(['auth','role:instructor'])->group(func
 Route::get('/',[IndexPageController::class,'index'])->name('frontend.index');
 Route::get('/login',[LoginPageController::class,'index'])->name('frontend.login');
 Route::get('/frontend/logout',[IndexPageController::class,'logout'])->name('frontend.logout');
-
+Route::get('/instructor/register',[RegisterPageController::class,'instructorRegister'])->name('frontend.instructor.register');
+Route::post('/instructor/store',[RegisterPageController::class,'instructorStore'])->name('frontend.instructor.store');
 
 require __DIR__.'/auth.php';

@@ -42,8 +42,11 @@
                             @foreach ($instructors as $key => $item)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
-                                    <td><img src="{{ asset($item->image) }}" width="80px"></td>
-                                    <td>{{ $item->username }}</td>
+                                    <td>
+                                        <img src="{{ !empty($item->image) ? asset($item->image) : asset('admin/no_image.jpg') }}" width="80px">
+                                    </td>
+
+                                    <td>{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->phone }}</td>
                                     <td>
